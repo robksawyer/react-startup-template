@@ -1,0 +1,138 @@
+﻿/*
+The color palette for the project.
+http://cssnext.io/features/#color-function
+
+background-color: var(--primary);
+color: var(--greyDark);
+*/
+:root {
+	/* named colors */
+	--color-blue-dark: #263d88;
+	--color-blue-darker: #203474;
+	--color-green: #8db31c;
+	--color-orange: #ea7125;
+	--color-orange-dark: #bf5512;
+	--color-red: #cf202e;
+	--color-red-dark: #9a1822;
+	/* grays.  within saturation sets, higher numbers are darker. */
+	--color-gray-light-0: gray(244); /* #f4f4f4, gray backgrounds, general borders and separators */
+	--color-gray-light-1: gray(237); /* #ededed, nav borders */
+	--color-gray-light-2: gray(231); /* #e7e7e7, blockquote background (when on white, originally done via rgba(0,0,0,.1)).  also hovers for main nav (originally rgb(230,232,232)) */
+	--color-gray-light-3: gray(225); /* #e1e1e1 */
+	--color-gray-medium-0: gray(215); /* #d7d7d7, dark borders (as on accordions) */
+	--color-gray-medium-1: gray(200); /* #c8c8c8 menu-button border, form control borders */
+	--color-gray-dark-0: gray(102); /* #666, used in focus borders on forms */
+	--color-gray-dark-1: rgb(77, 78, 83); /* #4d4e53, site text */
+	--color-box-shadow: #bfbfbf;
+	--color-card-box-shadow: rgba(0, 0, 0, 0.25);
+	/* replacements for controlled words */
+	--black: gray(0); /* #000000 */
+	--white: gray(255); /* #ffffff */
+	/* aliased colors */
+	--color-primary: var(--color-orange);
+	--color-primary-hover: var(--color-orange-dark);
+	--color-secondary: #d1d2d4;
+	--color-type: var(--color-gray-dark-1);
+	--color-link: var(--color-red);
+	--color-link-hover: var(--color-red-dark);
+	--color-error: var(--color-red);
+	/* gradient colors */
+	/* Green */
+	--gradient-green-1: #33bd5c;
+	--gradient-green-2: #98de65;
+	/* Red */
+	--gradient-red-1: #ff3827;
+	--gradient-red-2: #fbdb4f;
+	/* Orange */
+	--gradient-orange-1: #FF7B17;
+	--gradient-orange-2: #F07116;
+	--gradient-orange-3: #ff7b04;
+	/* Blue */
+	--gradient-blue-1: #2b82a6;
+	--gradient-blue-2: #7ed9ef;
+	/* Cyan */
+	--gradient-cyan-1: #29c291;
+	--gradient-cyan-2: #2eccc5;
+	/* Navy */
+	--gradient-navy-1: #4452db;
+	--gradient-navy-2: #64c5fd;
+	/* Purple */
+	--gradient-purple-1: #944ea3;
+	--gradient-purple-2: #caa1eb;
+	/* Yellow */
+	--gradient-yellow-1: #e6732b;
+	--gradient-yellow-2: #e0ba15;
+	/* Pink */
+	--gradient-pink-1: #8e5eff;
+	--gradient-pink-2: #f79dd8;
+	/* Homepage Blue */
+	--gradient-homepageblue-1: #0014d7;
+	--gradient-homepageblue-2: #4fbfff;
+	/* Border Blue */
+	--gradient-borderblue-1: #2666ea;
+	--gradient-borderblue-2: #4fbfff;
+	/* Icon Gradients */
+	--icon-callout--green {
+		background: var(--color-green); /* For browsers that do not support gradients */
+		background: -webkit-linear-gradient(left top, var(--gradient-green-1), var(--gradient-green-2)); /* For Safari 5.1 to 6.0 */
+		background: -o-linear-gradient(bottom right, var(--gradient-green-1), var(--gradient-green-2)); /* For Opera 11.1 to 12.0 */
+		background: -moz-linear-gradient(bottom right, var(--gradient-green-1), var(--gradient-green-2)); /* For Firefox 3.6 to 15 */
+		background: linear-gradient(to bottom right, var(--gradient-green-1), var(--gradient-green-2)); /* Standard syntax */
+	};
+	--icon-callout--red {
+		background: var(--color-orange); /* For browsers that do not support gradients */
+		background: -webkit-linear-gradient(left top, var(--gradient-red-1), var(--gradient-red-2)); /* For Safari 5.1 to 6.0 */
+		background: -o-linear-gradient(bottom right, var(--gradient-red-1), var(--gradient-red-2)); /* For Opera 11.1 to 12.0 */
+		background: -moz-linear-gradient(bottom right, var(--gradient-red-1), var(--gradient-red-2)); /* For Firefox 3.6 to 15 */
+		background: linear-gradient(to bottom right, var(--gradient-red-1), var(--gradient-red-2)); /* Standard syntax */
+	};
+	--icon-callout--blue {
+		background: var(--gradient-blue-1); /* For browsers that do not support gradients */
+		background: -webkit-linear-gradient(left top, var(--gradient-blue-1), var(--gradient-blue-2)); /* For Safari 5.1 to 6.0 */
+		background: -o-linear-gradient(bottom right, var(--gradient-blue-1), var(--gradient-blue-2)); /* For Opera 11.1 to 12.0 */
+		background: -moz-linear-gradient(bottom right, var(--gradient-blue-1), var(--gradient-blue-2)); /* For Firefox 3.6 to 15 */
+		background: linear-gradient(to bottom right, var(--gradient-blue-1), var(--gradient-blue-2)); /* Standard syntax */
+	};
+	--icon-callout--cyan {
+		background: var(--gradient-cyan-1); /* For browsers that do not support gradients */
+		background: -webkit-linear-gradient(left top, var(--gradient-cyan-1), var(--gradient-cyan-2)); /* For Safari 5.1 to 6.0 */
+		background: -o-linear-gradient(bottom right, var(--gradient-cyan-1), var(--gradient-cyan-2)); /* For Opera 11.1 to 12.0 */
+		background: -moz-linear-gradient(bottom right, var(--gradient-cyan-1), var(--gradient-cyan-2)); /* For Firefox 3.6 to 15 */
+		background: linear-gradient(to bottom right, var(--gradient-cyan-1), var(--gradient-cyan-2)); /* Standard syntax */
+	};
+	--icon-callout--navy {
+		background: var(--gradient-navy-1); /* For browsers that do not support gradients */
+		background: -webkit-linear-gradient(left top, var(--gradient-navy-1), var(--gradient-navy-2)); /* For Safari 5.1 to 6.0 */
+		background: -o-linear-gradient(bottom right, var(--gradient-navy-1), var(--gradient-navy-2)); /* For Opera 11.1 to 12.0 */
+		background: -moz-linear-gradient(bottom right, var(--gradient-navy-1), var(--gradient-navy-2)); /* For Firefox 3.6 to 15 */
+		background: linear-gradient(to bottom right, var(--gradient-navy-1), var(--gradient-navy-2)); /* Standard syntax */
+	};
+	--icon-callout--purple {
+		background: var(--gradient-purple-1); /* For browsers that do not support gradients */
+		background: -webkit-linear-gradient(left top, var(--gradient-purple-1), var(--gradient-purple-2)); /* For Safari 5.1 to 6.0 */
+		background: -o-linear-gradient(bottom right, var(--gradient-purple-1), var(--gradient-purple-2)); /* For Opera 11.1 to 12.0 */
+		background: -moz-linear-gradient(bottom right, var(--gradient-purple-1), var(--gradient-purple-2)); /* For Firefox 3.6 to 15 */
+		background: linear-gradient(to bottom right, var(--gradient-purple-1), var(--gradient-purple-2)); /* Standard syntax */
+	};
+	--icon-callout--yellow {
+		 background: var(--gradient-yellow-1); /* For browsers that do not support gradients */
+		 background: -webkit-linear-gradient(left top, var(--gradient-yellow-1), var(--gradient-yellow-2)); /* For Safari 5.1 to 6.0 */
+		 background: -o-linear-gradient(bottom right, var(--gradient-yellow-1), var(--gradient-yellow-2)); /* For Opera 11.1 to 12.0 */
+		 background: -moz-linear-gradient(bottom right, var(--gradient-yellow-1), var(--gradient-yellow-2)); /* For Firefox 3.6 to 15 */
+		 background: linear-gradient(to bottom right, var(--gradient-yellow-1), var(--gradient-yellow-2)); /* Standard syntax */
+	 };
+	--icon-callout--pink {
+		  background: var(--gradient-pink-1); /* For browsers that do not support gradients */
+		  background: -webkit-linear-gradient(left top, var(--gradient-pink-1), var(--gradient-pink-2)); /* For Safari 5.1 to 6.0 */
+		  background: -o-linear-gradient(bottom right, var(--gradient-pink-1), var(--gradient-pink-2)); /* For Opera 11.1 to 12.0 */
+		  background: -moz-linear-gradient(bottom right, var(--gradient-pink-1), var(--gradient-pink-2)); /* For Firefox 3.6 to 15 */
+		  background: linear-gradient(to bottom right, var(--gradient-pink-1), var(--gradient-pink-2)); /* Standard syntax */
+	  };
+	--homepage-blue {
+		  background: var(--gradient-homepageblue-1); /* For browsers that do not support gradients */
+		  background: -webkit-linear-gradient(147deg, var(--gradient-homepageblue-1), var(--gradient-homepageblue-2)); /* For Safari 5.1 to 6.0 */
+		  background: -o-linear-gradient(147deg, var(--gradient-homepageblue-1), var(--gradient-homepageblue-2)); /* For Opera 11.1 to 12.0 */
+		  background: -moz-linear-gradient(147deg, var(--gradient-homepageblue-1), var(--gradient-homepageblue-2)); /* For Firefox 3.6 to 15 */
+		  background: linear-gradient(147deg, var(--gradient-homepageblue-1), var(--gradient-homepageblue-2)); /* Standard syntax */
+	  };
+}

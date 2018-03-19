@@ -1,0 +1,25 @@
+# Ignore node packages
+node_modules/*
+
+# Ignore the build distribution folder
+public/*
+
+# Ignore the webpack build files
+build/*
+
+# Design files
+_design/*
+
+# Other
+.git/*
+yarn-error.log
+yarn.lock
+.gitignore
+.flowconfig
+.bowerrc
+.babelrc
+.gitlab-ci.yml
+bower.json
+package.json
+Procfile
+README.md

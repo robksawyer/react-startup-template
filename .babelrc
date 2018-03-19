@@ -1,0 +1,11 @@
+{
+    "presets": [
+        ["env", { "modules": false }],
+        "stage-0",
+        "react"
+    ],
+    "plugins": [
+        "transform-async-to-generator",
+        "transform-decorators-legacy"
+    ]
+}

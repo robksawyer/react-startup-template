@@ -1,0 +1,33 @@
+/* some simple re-usable styles. */
+:root {
+	--utility--clearfix:  {
+		content: '';
+		display: table;
+		clear: both;
+	};
+	--utility--accessibility:  {
+		position:absolute;
+		left:-10000px;
+		top:auto;
+		width:1px;
+		height:1px;
+		overflow:hidden;
+	};
+
+	--utility--focus:  {
+		outline-width: 2px;
+		outline-style: solid;
+		outline-color: Highlight;
+
+		/* WebKit gets its native focus styles.*/
+
+		@media (-webkit-min-device-pixel-ratio:0) {
+		    outline-color: -webkit-focus-ring-color;
+		    outline-style: auto;
+		}
+	}
+
+	--utility--text-upper: {
+		text-transform: uppercase;
+	}
+}

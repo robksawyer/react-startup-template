@@ -1,0 +1,89 @@
+@import 'tachyons';
+@import "tachyons-z-index";
+
+.home {
+  h1, h2, h3, h4, h5 {
+    padding: 0;
+    margin: 0;
+  }
+
+  .fadeIn{
+    animation-name: 'fadeIn';
+  }
+
+  .fadeOut{
+    animation-name: 'fadeOut';
+  }
+
+  .grad1{
+    background: linear-gradient(to right, #9287ff, #32c1ff 100%);
+  }
+
+  .grad2{
+    background: linear-gradient(to right, #1fa2ff, #05d5ff 100%);
+  }
+
+  .grad3{
+    background: linear-gradient(to right, #1fa2ff, #05d5ff 100%);
+  }
+
+  .b--mint-light-gray{
+    border-color: #f6f9fc;
+  }
+
+  .mint-green{
+    color: #24b47e;
+  }
+
+  .mint-light-gray{
+    color: #24b47e;
+  }
+
+  .mint-gray {
+    color: #6b7c93;
+  }
+
+  .bg-mint-light-gray {
+    background-color: #f6f9fc;
+  }
+
+  .purple {
+    color: #6772e5;
+  }
+
+  .big-link {
+    border-top: 2px solid #f1f7fb;
+    color: #6772e5;
+    text-decoration: none;
+  }
+
+  .icon-circle {
+    display: inline-block;
+    border-radius: 50%;
+    padding: 10px;
+    background-color: #24b47e;
+    overflow: visible;
+    /*box-shadow: 0px 0px 2px #888;*/
+  }
+
+  @media (min-width:670px) {
+    #intro {
+      display: -ms-flexbox;
+      display: flex;
+      -ms-flex-align: center;
+      align-items: center;
+      height: 600px
+    }
+  }
+
+  #section2:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    height: 180%;
+    top: 0;
+    transform: skewY(-12deg);
+    background: #f6f9fc;
+  }
+}

@@ -1,0 +1,24 @@
+/**
+ * TopBar.css
+ *
+ * @see https://stackoverflow.com/questions/10782054/what-does-the-tilde-squiggle-twiddle-css-selector-mean#
+ */
+@import 'tachyons';
+
+.topbar {
+
+}
+
+/*Accessibility*/
+
+.sr-only {
+  color: red;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  border: 0;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+}

@@ -1,0 +1,18 @@
+:root {
+	/*The base font-size for the root html element.  The value represents its pixel equivalent, e.g. 16 = 16px.*/
+    --type-font-size: 17;
+
+    --type-font-size-em-conversion: calc( var(--type-font-size) * 1em );
+
+    /*The percentage of the font-size to be used on the root html element.*/
+    --type-font-percentage: calc(calc(var(--type-font-size) / 16) / 100%);
+
+    /*The base line height for the root html element.*/
+    --type-line-height: calc(22 / var(--type-font-size));
+
+    /*Preserving original site's line height for places where vertical heights depend on it.*/
+    --type-line-height-pixels: 22px;
+
+    /*The base font-family for the root html element.*/
+    --type-font-family: Helvetica, Arial, sans-serif;
+}

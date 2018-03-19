@@ -1,0 +1,77 @@
+/**
+ * TopNav.css
+ *
+ * @see https://stackoverflow.com/questions/10782054/what-does-the-tilde-squiggle-twiddle-css-selector-mean#
+ */
+@import 'tachyons';
+@import 'font-awesome';
+
+.logo{
+  margin: -17px 0 0 50px;
+  position: absolute;
+}
+
+nav ul {
+  list-style: none;
+  display: inline;
+  li {
+    list-style: none;
+
+    a {
+      color: white;
+      text-decoration: none;
+    }
+  }
+}
+.auth-link {
+  margin-right: 20px;
+}
+.auth-link:last-child {
+  margin-right: 0px;
+}
+
+.v-mid {
+  vertical-align: middle;
+}
+
+.text-shadow {
+  text-shadow: 0px 2px 0px #45535B;
+}
+
+.left-auto {
+  margin-left: auto;
+}
+
+.f-xl {
+  font-size: 4rem;
+}
+
+.mw-21 {
+  max-width: 21rem;
+}
+
+/*Navbar*/
+
+.menu {
+  min-height: 4rem;
+  max-height: 0;
+  transition: max-height 1s;
+}
+
+#burger:checked ~ .menu {
+  max-height: 25rem;
+}
+
+/*Accessibility*/
+
+.sr-only {
+  color: red;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  border: 0;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+}

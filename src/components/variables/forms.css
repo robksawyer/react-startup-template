@@ -1,0 +1,38 @@
+:root {
+	--input-height: calc(36 / var(--type-font-size-em-conversion));
+
+	--input-padding: calc(6 / var(--type-font-size-em-conversion));
+	--select-left-padding: calc(10 / var(--type-font-size-em-conversion));
+
+	--form-border-active: {
+		border-color: var(--color-gray-dark-0);
+	};
+
+	--form-border: {
+		border-color: var(--color-gray-medium-1);
+		border-style: solid;
+		border-radius: 5px;
+		border-width: 1px;
+
+		&:--using {
+			@apply --form-border-active;
+		}
+	};
+
+	--form-border-error: {
+		border-color: var(--color-error);
+	};
+
+	--input-default: {
+		@apply --form-border;
+		font-size: 1em;
+		height: var(--input-height);
+		padding: var(--input-padding);
+		vertical-align: top;
+		width: 100%;
+
+		@nest .is-invalid & {
+			@apply --form-border-error;
+		}
+	};
+}
