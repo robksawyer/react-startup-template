@@ -38,6 +38,7 @@ old/
 
 # Design files
 _design
+design
 
 # Yarn
 yarn.lock
