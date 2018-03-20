@@ -11,7 +11,7 @@
   "scripts": {
     "start": "webpack-dev-server --config webpack.config.js --progress",
     "deploy": "yarn run build && yarn run surge",
-    "surge": "surge -d react-startup-template -p ./public",
+    "surge": "surge -d react-startup-template.surge.sh -p ./public",
     "build": "node reset && webpack --display-error-details --config webpack.config.production.js",
     "preview": "yarn run build -- -p 3001",
     "reset": "node reset",
