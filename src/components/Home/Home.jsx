@@ -46,7 +46,6 @@ import styles from './Home.css';
 import demoVideo from '../../video/get-code-cleaner-demo.mp4';
 
 // Images
-import banner from './images/banner.jpg';
 import airbnb from './images/logos/airbnb-300.png';
 import github from './images/logos/github-200.png';
 import google from './images/logos/google-300.png';
@@ -177,7 +176,7 @@ export default class Home extends Component {
           </div>
         </div>
         <Footer>
-          Copyright &copy; 2018 React Startup Template
+          { store.appStore.footerval }
         </Footer>
       </div>
     );

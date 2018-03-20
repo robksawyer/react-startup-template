@@ -2,7 +2,7 @@
  * AppStore
  * Logic that is more global and app specific.
  */
-import { observable, action } from "mobx";
+import { observable, action } from 'mobx';
 
 // Utils
 import request from '../utils/request';
@@ -21,7 +21,7 @@ export default class AppStore {
     this.items = [];
     this.item = {};
 
-    this.footerval = "Copyright © 2017 Get Cleaner Code";
+    this.footerval = 'Copyright © 2018 React Startup Template';
   }
 
   /**
