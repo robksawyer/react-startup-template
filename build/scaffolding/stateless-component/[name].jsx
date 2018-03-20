@@ -1,33 +1,39 @@
-import React, { PropTypes } from 'react';
+/**
+ * {{name}}.jsx
+ */
+import React from 'react';
+import PropTypes from 'prop-types';
+
+// Styles
 import styles from './{{name}}.css';
 
-
-export const {{name}} = (props) => {
+const {{name}} = (props) => {
   const {
-    tagName:Tag,
+    tagName: Tag,
     className,
     variant,
     children,
-    ...attrs
   } = props;
 
   return (
-    <Tag className={`{{className}} {{className}}--${variant} ${className}`} {...attrs}>
+    <Tag className={`{{className}} {{className}}--${variant} ${className}`}>
       {children}
     </Tag>
   );
-}
+};
 
 {{name}}.propTypes = {
   tagName: PropTypes.string,
   className: PropTypes.string,
-  variant: PropTypes.oneOf(['default'])
+  variant: PropTypes.oneOf(['default']),
+  children: PropTypes.node,
 };
 
 {{name}}.defaultProps = {
   tagName: 'div',
   className: '',
-  variant: 'default'
+  variant: 'default',
+  children: '',
 };
 
 

@@ -1,8 +1,17 @@
-/*
-  Collects errors and warnings output by webpack when run through gulp
-  and emits them to the console (without this all errors and warnings are swallowed)
-*/
-
+/**
+ * webpack-errorhandler.js
+ *
+ * Collects errors and warnings output by webpack when run through gulp.
+ * and emits them to the console (without this all errors and warnings are swallowed)
+ *
+ * chalk
+ * Terminal string styling done right
+ * @see https://github.com/chalk/chalk
+ *
+ * gulp-util
+ * Utilities for gulp plugins
+ * https://github.com/gulpjs/gulp-util
+ */
 const chalk = require('chalk');
 const gutil = require('gulp-util');
 
@@ -40,4 +49,3 @@ module.exports = (err, stats, options, done) => {
 
   done();
 }
-

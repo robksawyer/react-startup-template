@@ -2,23 +2,76 @@
  * {{name}}Settings.js
  * Another mobx react form settings file.
  * @see https://github.com/foxhound87/mobx-react-form
+ * @see https://github.com/skaterdav85/validatorjs
+ *
+ * Documentation
+ * @see https://mobx.js.org/
+ * @see https://foxhound87.github.io/mobx-react-form/docs/bindings/default.html#simple-usage
+ * @see https://foxhound87.github.io/mobx-react-form/
+ * @see http://tachyons.io/#style
+ * @see https://github.com/skaterdav85/validatorjs#available-rules
  */
 import { Form } from 'mobx-react-form';
 import validatorjs from 'validatorjs';
 
 // Utils
-import request from '../../../utils/request';
+// import request from '../../../utils/request';
+import request from '../../../utils/request-collector';
 
 export default class {{name}}Settings extends Form {
+  // Setup notification messages
+  errorNotification = {
+    title: 'Technical Error',
+    message: 'There was a technical issue. Please try again in a few minutes.',
+    level: 'error',
+  };
 
+  successNotification = {
+    title: 'Success',
+    message: 'Item successfully added.',
+    level: 'success',
+  };
+
+  failedNotification = {
+    title: 'Failed',
+    message: 'Item was not added. Try again later.',
+    level: 'error',
+  };
+
+  // Callback for submission success
   successCallback;
+
+  // Callback for submission failure
   errorCallback;
 
-  constructor( successCallback, errorCallback ) {
-    super();
+  // Callback for validation success
+  validationSuccess;
+
+  // Callback for validation failure
+  validationFailed;
+
+  // The notification system
+  notifier;
+
+  constructor(
+    store,
+    successCallback,
+    errorCallback,
+    validationSuccess = () => {},
+    validationFailed = () => {},
+  ) {
+    super(store);
     // Add the success callback
     this.successCallback = successCallback;
     this.errorCallback = errorCallback;
+
+    this.validationSuccess = validationSuccess;
+    this.validationFailed = validationFailed;
+
+    this.store = store;
+    this.appStore = store.appStore;
+    this.user = store.userStore;
+    this.notifier = store.notificationStore;
   }
 
   /**
@@ -69,14 +122,14 @@ export default class {{name}}Settings extends Form {
           // can add the rules using the `register()` method.
           // @see https://foxhound87.github.io/mobx-react-form/docs/validation/modes/dvr-custom.html
           Object.keys(rules).forEach((key) =>
-            $validator.register(key, rules[key].function, rules[key].message));
-          };
+            $validator.register(key, rules[key].function, rules[key].message)
+          );
 
           //   here we can access the `validatorjs` instance and we
           //   can add the rules using the `registerAsyncRule()` method.
           //   @see https://github.com/skaterdav85/validatorjs#asynchronous-validation
-          Object.keys( asyncRules ).forEach(
-            ( key ) => $validator.registerAsyncRule( key, asyncRules[ key ] )
+          Object.keys(asyncRules).forEach(
+            (key) => $validator.registerAsyncRule(key, asyncRules[key])
           );
         }
       }

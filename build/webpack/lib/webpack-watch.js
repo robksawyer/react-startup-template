@@ -1,19 +1,32 @@
+/**
+ * webpack-watch.js
+ *
+ * This handles the watch configuration for Webpack.
+ *
+ * webpack-dev-server
+ * Serves a webpack app. Updates the browser on changes.
+ * @see https://github.com/webpack/webpack-dev-server
+ */
 const path = require('path');
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
 
 const pkgpath = require('packpath');
 const pkg = require(path.resolve(pkgpath.self(), 'package.json'));
+const dirs = pkg.directories;
 
 module.exports = (configs, watchOpts) => {
   watchOpts.host = watchOpts.host || '0.0.0.0';
-  watchOpts.port = watchOpts.port || 8080;
+  watchOpts.port = watchOpts.port || 3001;
 
   // normalize config output paths
   // (code sniped from bin/webpack-dev-server.js:95)
   // without this, assets are not loaded correctly
   configs = configs.map(config => {
-    config.output.path = '/';
+    // Make some updates to the webpack config.
+    config.output.path = path.join(__dirname, dirs.dist);
+    config.output.publicPath = '/';
+    config.output.filename = 'app.[hash].js';
     return config;
   });
 
@@ -28,13 +41,15 @@ module.exports = (configs, watchOpts) => {
   var compiler = webpack(configs);
 
   const serverConfig = {
+    hot: true,
+    contentBase: path.resolve(pkg.directories.dist),
     host: watchOpts.host,
     port: watchOpts.port,
     publicPath: '/',
-    outputPath: '/',
-    filename: '/tmp/[name].js',
-    contentBase: path.resolve(pkg.directories.dest),
-    hot: false,
+    // outputPath: '/',
+    // filename: '/tmp/[name].js',
+    historyApiFallback: true,
+    disableHostCheck: true,
     stats: {
       colors: true,
       chunks: false,

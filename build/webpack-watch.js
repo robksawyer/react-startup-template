@@ -1,3 +1,6 @@
+/**
+ * webpack-watch.js
+ */
 const webpack = require('webpack');
 const config = require('./webpack/webpack.config');
 const webpackWatch = require('./webpack/lib/webpack-watch');

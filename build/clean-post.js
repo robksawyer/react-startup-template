@@ -1,3 +1,8 @@
+/**
+ * clean-post.js
+ *
+ * Actions that are applied after the app has been built.
+ */
 const del = require('del');
 const path = require('path');
 const pkgpath = require('packpath');
@@ -5,5 +10,10 @@ const pkg = require(path.resolve(pkgpath.self(), 'package.json'));
 const dirs = pkg.directories;
 
 module.exports = () => {
-  return del(path.resolve(pkgpath.self(), dirs.dist, 'tmp'), { force: true })
+  return del(
+    path.resolve(pkgpath.self(), dirs.dist, 'tmp'),
+    {
+      force: true
+    }
+  )
 };

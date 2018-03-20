@@ -1,5 +1,9 @@
+/**
+ * {{name}}.jsx
+ */
 import React, { Component } from 'react';
-import { inject, observer } from "mobx-react";
+import { inject, observer } from 'mobx-react';
+import PropTypes from 'prop-types';
 
 // Styles
 import styles from './{{name}}.css';
@@ -7,13 +11,12 @@ import styles from './{{name}}.css';
 @inject('store')
 @observer
 export default class {{name}} extends Component {
-  render(){
+  render() {
     const {
-      tagName:Tag = 'div',
-      className = '',
-      variant = 'default',
+      tagName: Tag,
+      className,
+      variant,
       children,
-      ...attrs
     } = this.props;
 
     return (
@@ -22,5 +25,19 @@ export default class {{name}} extends Component {
       </Tag>
     );
   }
-
 }
+
+{{name}}.propTypes = {
+  store: PropTypes.oneOfType([PropTypes.object]),
+  tagName: PropTypes.string,
+  className: PropTypes.string,
+  variant: PropTypes.oneOf(['default']),
+  children: PropTypes.node,
+};
+
+{{name}}.defaultProps = {
+  tagName: 'div',
+  className: '',
+  variant: 'default',
+  children: '',
+};
