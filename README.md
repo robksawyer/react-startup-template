@@ -9,7 +9,7 @@
 ## Getting Started
 
 1. Open `./index.hbs`, update the page title, and replace `GTM-XXXXXXX` plus http://www.mystartup.com with your [Google Tag Manager](https://www.google.com/analytics/tag-manager/) code and startup domain.
-1. Add environment variables by copying `.env-sample` to `.env` and updating the contents.
+1. Add environment variables by copying `.env.example` to `src/.env` and `src/.env.production` and updating the contents.
 1. Run `yarn install` and `yarn start`
 1. Navigate to <http://localhost:3001> to see it in action.
 
