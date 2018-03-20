@@ -1,168 +1,189 @@
-/*
-  Configures how assets served by the browser (e.g. CSS, JS, images) are processed by webpack.
-*/
-var path = require("path");
-var fs = require("fs");
-var webpack = require("webpack");
-var pkg = require('./package.json');
+/**
+ * webpack.config.js
+ *
+ * webpack
+ * webpack is a module bundler
+ * This means webpack takes modules with dependencies and emits static assets
+ * representing those modules.
+ * @see https://webpack.github.io/
+ *
+ * postcss-pipeline-webpack-plugin
+ * A webpack plugin to process generated assets with PostCSS pipeline
+ * @see https://github.com/mistakster/postcss-pipeline-webpack-plugin
+ *
+ * uglifyjs-webpack-plugin
+ * This plugin uses UglifyJS v3 (`uglify-es`) to minify your JavaScript
+ * @see https://github.com/webpack-contrib/uglifyjs-webpack-plugin
+ *
+ * dotenv
+ * Loads environment variables from .env for nodejs projects.
+ * @see https://github.com/motdotla/dotenv
+ *
+ * favicons-webpack-plugin
+ * Let webpack generate all your favicons and icons for you
+ * @see https://github.com/jantimon/favicons-webpack-plugin
+ *
+ * html-webpack-plugin
+ * Simplifies creation of HTML files to serve your webpack bundles
+ * @see https://github.com/jantimon/html-webpack-plugin
+ *
+ * webpack-svgstore-plugin
+ * Simple svg-sprite creating with webpack
+ * @see https://github.com/mrsum/webpack-svgstore-plugin
+ *
+ * dotenv-webpack
+ * A secure webpack plugin that supports dotenv and other environment
+ * variables and only exposes what you choose and use.
+ * @see https://github.com/mrsteele/dotenv-webpack
+ *
+ * globalize-webpack-plugin
+ * Use globalize-webpack-plugin if your application uses Globalize
+ * for internationalization/localization.
+ * @see https://github.com/rxaviers/globalize-webpack-plugin
+ *
+ * case-sensitive-paths-webpack-plugin
+ * This Webpack plugin enforces the entire path of all required modules
+ * match the exact case of the actual path on disk.
+ * @see https://github.com/Urthen/case-sensitive-paths-webpack-plugin
+ *
+ */
+const webpack = require('webpack');
 
-// @see https://github.com/jantimon/html-webpack-plugin
-var HtmlWebpackPlugin = require("html-webpack-plugin");
+const path = require('path');
+const pkgpath = require('packpath');
+const pkg = require('./package.json');
 
-// @see https://github.com/mrsum/webpack-svgstore-plugin
+const dirs = pkg.directories;
+const envPath = path.resolve(pkgpath.self(), `./${dirs.src}/.env`);
+
+// Webpack plugins
+const Dotenv = require('dotenv-webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
+const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const SvgStorePlugin = require('webpack-svgstore-plugin');
 
-// Simulate config options from your production environment by
-// customising the .env file in your project"s root folder.
-// const config = require("./config/vars");
-var envPath = "../../src/.env";
-if(fs.existsSync(envPath)){
-  require("dotenv").config({
-    path: envPath,
-  });
-}
+// const GlobalizePlugin = require('globalize-webpack-plugin');
 
 module.exports = {
+  name: 'development',
+  target: 'web',
   entry: [
-    "react-hot-loader/patch",
-    "webpack-dev-server/client?http://0.0.0.0:3001",
-    "webpack/hot/only-dev-server",
-    "babel-polyfill",
-    "whatwg-fetch",
-    "./src/index"
+    'babel-polyfill',
+    'react-hot-loader/patch',
+    'webpack-dev-server/client?http://0.0.0.0:3001',
+    'webpack/hot/only-dev-server',
+    'whatwg-fetch',
+    `./${dirs.src}/index.js`,
   ],
   resolve: {
-    modules: [path.resolve(__dirname, "src"), "node_modules"],
-    extensions: [".js", ".json", ".jsx"],
+    modules: [
+      path.resolve(pkgpath.self(), dirs.src),
+      'node_modules',
+      'node_modules/react-hot-loader/patch',
+    ],
+    extensions: ['.js', '.json', '.jsx'],
     enforceExtension: false,
   },
   devServer: {
     hot: true,
-    contentBase: path.join(__dirname, "public"),
+    contentBase: path.join(pkgpath.self(), dirs.dist),
     port: 3001,
-    host: "0.0.0.0",
-    publicPath: "/",
-    historyApiFallback: true,
-    disableHostCheck: true
+    host: '0.0.0.0',
+    publicPath: '/',
+    historyApiFallback: {
+      disableDotRule: true,
+    },
+    disableHostCheck: true,
+    clientLogLevel: 'info',
   },
   output: {
-    path: path.join(__dirname, "public"),
-    publicPath: "/",
-    filename: "app.[hash].js"
+    path: path.join(pkgpath.self(), dirs.dist),
+    publicPath: '/',
+    filename: `${dirs.assets}/app.[hash].js`,
   },
-  devtool: "eval",
+  // @see https://webpack.js.org/configuration/devtool/
+  // devtool: 'eval',
+  devtool: 'source-map',
   module: {
     rules: [
       {
         test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
+        exclude: [/node_modules/, /\.test\.(js|jsx)/, /\.stories\.(js|jsx)/],
         use: [
-          {
-            loader: "babel-loader"
-          },
-        ]
+          { loader: 'react-hot-loader/webpack' },
+          { loader: 'babel-loader' },
+        ],
       },
       {
         test: /\.scss$/,
         use: [
           {
-            loader: "style-loader",
+            loader: 'style-loader',
             options: {
-              sourceMap: true
-            }
+              sourceMap: true,
+            },
           },
           {
-            loader: "css-loader",
+            loader: 'css-loader',
             options: {
-              sourceMap: true
-            }
+              sourceMap: true,
+            },
           },
           {
-            loader: "postcss-loader",
+            loader: 'postcss-loader',
             options: {
-              sourceMap: true
-            }
+              sourceMap: true,
+            },
           },
-          { loader: "resolve-url-loader" },
+          'resolve-url-loader',
           {
-            loader: "sass-loader",
+            loader: 'sass-loader',
             options: {
-              sourceMap: true
-            }
-          }
-        ]
+              sourceMap: true,
+            },
+          },
+        ],
       },
       {
         test: /\.css$/,
         use: [
-          { loader: "style-loader" },
-          { loader: "css-loader" },
+          'style-loader',
+          'css-loader',
           {
-            loader: "postcss-loader",
+            loader: 'postcss-loader',
             options: {
               sourceMap: false,
-              // modules: true,
-            }
+            },
           },
-        ]
+        ],
       },
       {
         test: /\.(jpe?g|png|gif|svg|ico)$/i,
         use: [
           {
-            loader: "image-webpack-loader",
+            loader: 'file-loader',
             options: {
-              progressive: true,
-              optimizationLevel: 7,
-              interlaced: false,
-              pngquant: {
-                quality: "65-90",
-                speed: 4
-              }
-            }
+              hash: 'sha512',
+              digest: 'hex',
+              name: '[hash].[ext]',
+            },
           },
-          {
-            loader: "file-loader",
-            options: {
-              hash: "sha512",
-              digest: "hex",
-              name: "[hash].[ext]"
-            }
-          },
-        ]
+        ],
       },
-      {
-        test: /\.svg$/,
-        use: {
-          loader: "svg-inline-loader",
-        },
-      },
-      // @see https://survivejs.com/webpack/loading/fonts/
       {
         test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
         use: {
-          loader: "url-loader",
+          loader: 'url-loader',
           options: {
             limit: 10000,
-            mimetype: "application/font-woff"
-          }
-        }
+            mimetype: 'application/font-woff',
+          },
+        },
       },
       {
-        test: /\.(otf|ttf|eot|svg)?$/,
-        use: {
-          loader: "file-loader",
-          options: {
-            name: "/assets/fonts/[name]-[md5:hash:hex:8].[ext]"
-          }
-        }
-      },
-      {
-        test: /\.(html)?$/,
-        loader: 'file-loader',
-        options: {
-          name: "[name].[ext]"
-        }
+        test: /\.(ttf|eot|svg|otf)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        use: 'file-loader',
       },
       {
         test: /\.mp4$/,
@@ -170,29 +191,50 @@ module.exports = {
         options: {
           limit: 10000,
           mimetype: 'video/mp4',
-        }
+        },
       },
-      {
-        test: /\.md$/,
-        loader: 'null'
-      },
-    ]
+    ],
   },
   plugins: [
-    new webpack.DefinePlugin({
-      "process.env": {
-        NODE_ENV: JSON.stringify("local"),
-        PORT: JSON.stringify(process.env.PORT),
-        SUPPORT_EMAIL: JSON.stringify(process.env.SUPPORT_EMAIL),
-      }
+    // new SvgStorePlugin({
+    //   prefix: 'icon--',
+    //   svg: {
+    //     style: '',
+    //     class: 'accessibility',
+    //   },
+    // }),
+    // new GlobalizePlugin({
+    //   production: false, // true: production, false: development
+    //   developmentLocale: 'en', // locale to be used for development.
+    //   supportedLocales: ['en'], // locales that should be built support for.
+    //   // cldr: function() {}, // CLDR data (optional)
+    //   messages: 'messages/[locale].json', // messages (optional)
+    //   // timeZoneData() {}, // time zone data (optional)
+    //   output: 'i18n/[locale].[hash].js', // build output.
+    //   // moduleFilter: filterFunction, // filter for modules to exclude from processing
+    //   // tempdirBase: '.', // optional for non create-react-apps
+    // }),
+    new Dotenv({
+      // load this now instead of the ones in '.env'
+      path: envPath,
+      // load '.env.example' to verify the '.env' variables are all set.
+      // Can also be a string to a different file.
+      safe: true,
+      // load all the predefined 'process.env' variables which will trump
+      // anything local per dotenv specs.
+      systemvars: true,
+      // hide any errors
+      silent: false,
     }),
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
+    new CaseSensitivePathsPlugin({ debug: false }),
+    new FaviconsWebpackPlugin(`./${dirs.src}/images/logo.png`),
     new HtmlWebpackPlugin({
       hash: false,
-      template: "./index.hbs",
-      favicon: 'src/images/favicon.ico'
+      template: './index.hbs',
+      favicon: `${dirs.src}/images/favicon.ico`,
     }),
-    new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /nb/),
-  ]
+    // new webpack.ContextReplacementPlugin(\/moment[/\\]locale$/, /nb/),
+  ],
 };

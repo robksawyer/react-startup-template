@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-import { inject, observer } from "mobx-react";
-import { Route, Link, withRouter } from "react-router-dom";
+import React, { Component } from 'react';
+import { inject, observer } from 'mobx-react';
+import { Route, Link, withRouter } from 'react-router-dom';
 
 // Components
-import ActiveLink from "../ui/Activelink";
+import ActiveLink from '../ui/ActiveLink';
 import Button from '../ui/Button';
 
 // Images
@@ -24,7 +24,7 @@ const css = {
 };
 
 @withRouter
-@inject("store")
+@inject('store')
 @observer
 export default class TopNav extends Component {
   constructor(props) {
@@ -44,7 +44,9 @@ export default class TopNav extends Component {
           <div className="fl-ns dn w-30-ns">
             <ul className="pt1 pb1-ns pl3 tl">
               <li className={`${css.btnLeft} dib-ns`}>
-                <ActiveLink activeOnlyWhenExact={true}  to="/"><img className="logo" src={Logo} alt="logo"/></ActiveLink>
+                <ActiveLink activeOnlyWhenExact  to="/">
+                  <img className="logo" src={Logo} alt="logo" />
+                </ActiveLink>
               </li>
             </ul>
           </div>

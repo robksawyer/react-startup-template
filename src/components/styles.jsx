@@ -1,5 +1,4 @@
 // Import global style variables
-import './variables';
 import 'react-widgets/dist/css/react-widgets.css';
 import 'react-select/dist/react-select.css';
 
